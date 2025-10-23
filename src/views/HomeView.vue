@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Header>My memos</Header>
     <ul>
       <li v-for="memo in newest" :key="memo.id">
         <router-link :to="{name: 'Edit', params: {id: memo.id}}">
@@ -11,8 +12,13 @@
 </template>
 
 <script>
+import Header from "@/components/HeaderView.vue";
+
 export default {
   name: 'HomeView',
+  components: {
+    Header
+  },
   computed: {
     newest: function() {
       return this.$store.state.memos.slice().reverse();
@@ -21,6 +27,21 @@ export default {
  
 };
 </script>
+
+<style>
+    textarea {
+        width: 100%;
+        height: 10em;
+    }
+
+    button {
+        border: 1px solid #333;
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        margin-top: 10px;
+    }
+</style>
 
 <style scoped>
 ul {
